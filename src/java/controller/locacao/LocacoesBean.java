@@ -12,4 +12,6 @@ package controller.locacao;
  */
 public class LocacoesBean {
     
+    
+    
 }
