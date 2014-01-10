@@ -15,7 +15,7 @@ import org.hibernate.classic.Session;
  *
  * @author evandro
  */
-public class FimesDAO implements InterfaceFilmes{
+public class FilmesDAO implements InterfaceFilmes{
     
      @Override
     public void salvar(Filmes filmes) {               
