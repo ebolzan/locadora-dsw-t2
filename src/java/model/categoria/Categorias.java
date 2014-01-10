@@ -29,9 +29,12 @@ public class Categorias implements Serializable{
     private Integer id;            
     private String descricao;
     
-    public Categorias()
+    public Categorias(){}
+    
+    public Categorias(Integer id, String descricao)
     {
-        
+        this.id        = id;
+        this.descricao = descricao;
     }
 
     public Integer getId() {

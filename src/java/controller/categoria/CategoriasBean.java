@@ -17,20 +17,18 @@ import model.categoria.CategoriasDAO;
  *
  * @author evandro
  */
-
 @Named
 @SessionScoped
 public class CategoriasBean implements Serializable{
     
-    private String descricao;
-    
-    private final CategoriasDAO categorias;
+    private final CategoriasDAO categoriaDao;
+    private String descricao;        
     private Categorias cat;
     
     public CategoriasBean()
     {
-        categorias = new CategoriasDAO();
-        cat = categorias.carregar(2);
+        categoriaDao = new CategoriasDAO();
+        //cat = categorias.carregar(2);
     }
 
     public String getDescricao() {
@@ -43,7 +41,7 @@ public class CategoriasBean implements Serializable{
     
     public List<Categorias> getCategorias()
     {
-        return categorias.lista();
+        return categoriaDao.lista();
     }
     
     public Categorias getCat() {
@@ -54,4 +52,23 @@ public class CategoriasBean implements Serializable{
         this.cat = cat;
     }
     
+    public String addAction()
+    {   
+        Categorias c1 = new Categorias(Integer.SIZE, descricao);
+        categoriaDao.salvar(c1);
+        
+        return null;
+    }
+    
+    public String deleteAction(Categorias categorias)
+    {
+        categoriaDao.excluir(categorias);
+        return null;
+    }
+    
+    public String updateAction(Categorias categorias)
+    {
+        categoriaDao.atualizar(categorias);
+        return null;
+    }
 }

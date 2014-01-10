@@ -86,7 +86,7 @@ public class FilmesBean implements Serializable{
         return null;
     }        
     
-    public String editAction(Filmes f1)
+    public String updateAction(Filmes f1)
     {
         filmes.atualizar(f1);
         return null;

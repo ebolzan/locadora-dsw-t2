@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+import model.cliente.Clientes;
 import model.endereco.Enderecos;
 import model.endereco.EnderecosDAO;
 
@@ -29,8 +30,17 @@ public class EnderecosBean implements Serializable {
     private String cidade;
     private String estado;
     private String cep;
-    private String complemento;
+    private String complemento;    
+    private Clientes clientes;
 
+    public Clientes getClientes() {
+        return clientes;
+    }
+
+    public void setClientes(Clientes clientes) {
+        this.clientes = clientes;
+    }   
+    
     public EnderecosBean() {
         this.enderecoDao = new EnderecosDAO();
     }
@@ -103,30 +113,37 @@ public class EnderecosBean implements Serializable {
      * @return lista de enderecos do banco de dados
      *         
     */
-    public List<Enderecos> getEnderecos()
+    public List<Enderecos> getEnderecoslist()
     {
         return this.enderecoDao.lista();
     }
     
     public String addAction()
     {
+        Enderecos e1 = new Enderecos(clientes.getId(), rua, cidade, estado, cep);
         
-        return null;
-    }
-    
-    public String editAction(Enderecos enderecos)
-    {
+        if(this.numero != null)        
+            e1.setNumero(numero);        
+        
+        if(this.complemento != null)
+            e1.setComplemento(complemento);
+        
+        if(this.bairro != null)
+            e1.setBairro(bairro);
+        
+        enderecoDao.salvar(e1);        
         return null;
     }
     
     public String deleteAction(Enderecos enderecos)
     {
+        enderecoDao.excluir(enderecos);
         return null;
-    }
+    }      
     
-    public String updateAction()
+    public String updateAction(Enderecos enderecos)
     {
+        enderecoDao.atualizar(enderecos);
         return null;        
-    }        
-    
+    }            
 }
