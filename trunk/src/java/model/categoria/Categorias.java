@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 
 
@@ -28,6 +29,9 @@ public class Categorias implements Serializable{
     @Column(name= "id")
     private Integer id;            
     private String descricao;
+    
+    @Transient
+    private Boolean editavel = true;
     
     public Categorias(){}
     
@@ -52,6 +56,15 @@ public class Categorias implements Serializable{
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+    
+    public Boolean getEditavel() {
+        return editavel;
+    }
+
+    public void setEditavel(Boolean editavel) {
+        this.editavel = editavel;
+    }
+    
 
     @Override
     public String toString() {
