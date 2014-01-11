@@ -1,7 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * 
  */
 
 package controller.categoria;
@@ -24,13 +22,22 @@ public class CategoriasBean implements Serializable{
     private final CategoriasDAO categoriaDao;
     private String descricao;        
     private Categorias cat;
+    private Boolean editavel;        
     
     public CategoriasBean()
     {
         categoriaDao = new CategoriasDAO();
         //cat = categorias.carregar(2);
+    }        
+
+    public Boolean getEditavel() {
+        return editavel;
     }
 
+    public void setEditavel(Boolean editavel) {
+        this.editavel = editavel;
+    }   
+    
     public String getDescricao() {
         return descricao;
     }
@@ -71,4 +78,20 @@ public class CategoriasBean implements Serializable{
         categoriaDao.atualizar(categorias);
         return null;
     }
+    
+     public String editAction(Categorias cat) {
+	cat.setEditavel(true);
+	return null;
+    }
+     
+   public String saveAction()  
+   {
+       for(Categorias cat2 : this.getCategorias())
+       {           
+           this.categoriaDao.atualizar(cat2);
+           cat2.setEditavel(false);           
+       }
+       
+       return null;
+   }
 }
