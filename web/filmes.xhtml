@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+    <h:head>
+    	
+    </h:head>
+    <h:body> 
+        <ui:include src="header.xhtml" />
+        
+        <h2>Filmes</h2>
+        
+        <h:form>
+            <h:dataTable value="#{filmesBean.filmes}" var="cat"
+    			styleClass="order-table"
+    			headerClass="order-table-header"
+    			rowClasses="order-table-odd-row,order-table-even-row">
+                              
+    		<h:column>
+    			<f:facet name="header">ID</f:facet>
+                        <h:inputText value="#{filmes.id}" size="10" rendered="#{filmes.editavel}" />
+                        <h:outputText value="#{filmes.id}" rendered="#{not filmes.editavel}" />
+    		</h:column>
+ 
+    		<h:column>
+    			<f:facet name="header">Categoria</f:facet>
+                        <h:inputText value="#{filmes.descricao}" size="10" rendered="#{filmes.editavel}" />
+                        <h:outputText value="#{filmes.descricao}" rendered="#{not filmes.editavel}" /> 
+    		</h:column>     		     		
+ 
+    		<h:column>
+    			<f:facet name="header">Ação</f:facet> 
+                        <h:commandLink value="Editar" action="#{filmesBean.updateAction(cat)}" 
+                                       rendered="#{not filmes.editavel}" />
+                        &nbsp;&nbsp;
+                        <h:commandLink value="Deletar" 
+                                       action="#{filmesBean.deleteAction(cat)}" /> 
+    		</h:column>
+            </h:dataTable>
+            
+            <h:commandButton value="Salvar Alterações" action="#{filmesBean.saveAction}" />
+ 
+            <h3>Novo Filme</h3>
+            <h:panelGrid columns="2">
+    			filme:
+                        <h:inputText size="20" value="#{filmesBean.descricao}" />    		                                                    		
+            </h:panelGrid>
+            
+            <h:commandButton value="Add" action="#{filmesBean.addAction}" />
+ 
+    	</h:form>        
+
+        <ui:include src="footer.xhtml" />
+    </h:body>
+</html>
