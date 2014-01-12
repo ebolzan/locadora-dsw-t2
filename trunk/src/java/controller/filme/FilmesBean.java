@@ -30,6 +30,7 @@ public class FilmesBean implements Serializable{
     private String descricao;
     private Date ano;
     private Categorias categorias;
+    private Boolean editavel;        
 
     public FilmesBean() {        
         this.filmes = new FilmesDAO();                
@@ -75,20 +76,36 @@ public class FilmesBean implements Serializable{
     
     public String addAction()
     {
-        Filmes f1 = new Filmes(Integer.SIZE, descricao, ano, categorias);
-        filmes.salvar(f1);        
+        Filmes filme = new Filmes(Integer.SIZE, descricao, ano, categorias);
+        filmes.salvar(filme);        
         return null;
     }
     
-    public String deleteAction(Filmes f1)
+    public String deleteAction(Filmes filme)
     {
-        filmes.excluir(f1);
+        filmes.excluir(filme);
         return null;
     }        
     
-    public String updateAction(Filmes f1)
+    public String updateAction(Filmes filme)
     {
-        filmes.atualizar(f1);
+        filmes.atualizar(filme);
         return null;
     }    
+    
+    public Boolean getEditavel() {
+        return editavel;
+    }
+
+    public void setEditavel(Boolean editavel) {
+        this.editavel = editavel;
+    }  
+    
+    public String saveAction()  {
+       for(Filmes filme : this.getFilmesList()) {           
+           this.filmes.atualizar(filme);
+           filme.setEditavel(false);           
+       }       
+       return null;
+    }
 }

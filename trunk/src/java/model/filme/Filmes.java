@@ -24,6 +24,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import model.categoria.Categorias;
 import org.hibernate.annotations.Type;
 
@@ -53,6 +54,9 @@ public class Filmes implements Serializable {
     @ManyToOne
     @JoinColumn(name = "categorias_id")
     private Categorias categorias;
+    
+    @Transient
+    private Boolean editavel = true;
 
     public Filmes(){}
     
@@ -94,6 +98,14 @@ public class Filmes implements Serializable {
     public void setCategorias(Categorias categorias) {
         this.categorias = categorias;
     }   
+    
+    public Boolean getEditavel() {
+        return editavel;
+    }
+
+    public void setEditavel(Boolean editavel) {
+        this.editavel = editavel;
+    }
 
     @Override
     public String toString() {

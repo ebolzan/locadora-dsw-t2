@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+    <h:head>
+    	<h:outputStylesheet library="css" name="table-style.css"  />
+    </h:head>
+    <h:body>              
+        
+        <ui:include src="header.xhtml" />
+        <div class="content">
+    	<h2>Cadastrar Categorias</h2>
+    	<h:form>
+            <h:dataTable value="#{categoriasBean.categorias}" var="cat"
+    			styleClass="order-table"
+    			headerClass="order-table-header"
+    			rowClasses="order-table-odd-row,order-table-even-row">
+                              
+    		<h:column>
+    			<f:facet name="header">ID</f:facet>
+                        <h:inputText value="#{cat.id}" size="10" rendered="#{cat.editavel}" />
+                        <h:outputText value="#{cat.id}" rendered="#{not cat.editavel}" />
+    		</h:column>
+ 
+    		<h:column>
+    			<f:facet name="header">Categoria</f:facet>
+                        <h:inputText value="#{cat.descricao}" size="10" rendered="#{cat.editavel}" />
+                        <h:outputText value="#{cat.descricao}" rendered="#{not cat.editavel}" /> 
+    		</h:column>     		     		
+ 
+    		<h:column>
+    			<f:facet name="header">Ação</f:facet> 
+                        <h:commandLink value="Editar" action="#{categoriasBean.editAction(cat)}" 
+                                       rendered="#{not cat.editavel}" />
+                        
+                        &nbsp;&nbsp;
+                        <h:commandLink value="Deletar" 
+                                       action="#{categoriasBean.deleteAction(cat)}" /> 
+    		</h:column>
+            </h:dataTable>
+            
+            <h:commandButton value="Salvar Alterações" action="#{categoriasBean.saveAction}" />
+ 
+            <h3>Nova CATEGORIA</h3>
+            <h:panelGrid columns="2">
+                        			
+    			categoria:
+                        <h:inputText size="20" value="#{categoriasBean.descricao}" />    		                                                    		
+            </h:panelGrid>
+            
+            <h:commandButton value="Add" action="#{categoriasBean.addAction}" />
+ 
+    	</h:form>        
+        </div>
+        <ui:include src="footer.xhtml" />
+    </h:body>            
+</html>
