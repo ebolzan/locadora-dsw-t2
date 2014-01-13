@@ -45,17 +45,16 @@
  
             <h3>Novo Filme</h3>
             <h:panelGrid columns="2">
-    			filme:
+    			Filme:
                         <h:inputText size="20" value="#{filmesBean.descricao}" />    		                                                    		
+            
+                        Categoria:
+                        <h:selectOneMenu value="#{filmesBean.categorias}">
+                            <f:selectItems value="#{filmesBean.categoriasDao}"/>
+                        </h:selectOneMenu>
+
+                        <h:commandButton value="Add" action="#{filmesBean.addAction}" />
             </h:panelGrid>
-            
-            
-            <h:selectOneMenu value="#{filmesBean.categorias}">
-                <f:selectItems value="#{filmesBean.categoriasDao}"/>
-            </h:selectOneMenu>
-            
-            <h:commandButton value="Add" action="#{filmesBean.addAction}" />
- 
     	</h:form>       
         
         <br />
