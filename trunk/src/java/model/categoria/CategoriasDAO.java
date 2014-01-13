@@ -1,6 +1,5 @@
 package model.categoria;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Transaction;
@@ -123,8 +122,7 @@ public class CategoriasDAO implements InterfaceCategorias {
     }
 
     @Override
-    //public List<Categorias> lista() {
-    public ArrayList<Categorias> lista() {
+    public List<Categorias> lista() {
         
         Session session = null;
         Transaction transaction = null;
@@ -133,9 +131,8 @@ public class CategoriasDAO implements InterfaceCategorias {
         {                   
             session = hibernate.util.HibernateUtil.getSessionFactory().openSession();        
             transaction = session.beginTransaction();
-            transaction.begin();        
-            ArrayList<Categorias> lista = (ArrayList<Categorias>) session.createQuery("from Categorias");
-            // List<Categorias> lista =  session.createQuery("from Categorias").list();            
+            transaction.begin();                    
+            List<Categorias> lista =  session.createQuery("from Categorias").list();            
             transaction.commit();
                         
             return lista;

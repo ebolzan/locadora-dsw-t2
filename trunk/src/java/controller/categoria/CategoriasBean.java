@@ -47,7 +47,7 @@ public class CategoriasBean implements Serializable{
         this.descricao = descricao;
     }
     
-    public ArrayList<Categorias> getCategorias()
+    public List<Categorias> getCategorias()
     {
         return categoriaDao.lista();
     }
