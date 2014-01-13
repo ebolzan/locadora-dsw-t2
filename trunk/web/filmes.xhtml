@@ -49,12 +49,15 @@
                         <h:inputText size="20" value="#{filmesBean.descricao}" />    		                                                    		
             
                         Categoria:
-                        <h:selectOneMenu value="#{filmesBean.categorias}" >
+                        <h:selectOneMenu value="#{filmesBean.categoriaInput}" >
                             
-                            <f:selectItems  value="#{filmesBean.categoriasValue}"/>
+                            <f:selectItems value="#{filmesBean.categoriasValue}"/>
                         </h:selectOneMenu>
 
                         <h:commandButton value="Add" action="#{filmesBean.addAction}" />
+                        
+                        #{filmesBean.categoriaInput}
+                        
             </h:panelGrid>
     	</h:form>       
         

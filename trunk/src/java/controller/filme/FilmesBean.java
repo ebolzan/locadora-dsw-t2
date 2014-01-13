@@ -31,7 +31,8 @@ public class FilmesBean implements Serializable{
     private CategoriasDAO categoriasDao = new CategoriasDAO();
         
     private FilmesDAO filmes;    
-        
+    
+    private String categoriaInput; 
     private String descricao;
     private Date ano;
     private Categorias categorias;
@@ -46,6 +47,14 @@ public class FilmesBean implements Serializable{
     public Map<String,Categorias> getCategoriasValue() {
     return categoriasValue;
     }
+
+    public String getCategoriaInput() {
+        return categoriaInput;
+    }
+
+    public void setCategoriaInput(String categoriaInput) {
+        this.categoriaInput = categoriaInput;
+    }            
     
     public List<Categorias> getCategoriasDao()
     {
@@ -66,9 +75,7 @@ public class FilmesBean implements Serializable{
             {
                 //label, value
                 categoriasValue.put(cat.getDescricao(), cat);                         
-            }
-        
-        
+            }                
     }
         
     public FilmesDAO getFilmes() {
@@ -109,9 +116,13 @@ public class FilmesBean implements Serializable{
         return this.filmes.lista();
     }
     
+    
+    
+    
     public String addAction()
     {
-        Filmes filme = new Filmes(Integer.SIZE, descricao, ano, categorias);
+        Categorias c1 = this.categoriasDao.getCategoriaByName(this.getCategoriaInput());
+        Filmes filme = new Filmes(Integer.SIZE, descricao, ano, c1);
         filmes.salvar(filme);        
         return null;
     }

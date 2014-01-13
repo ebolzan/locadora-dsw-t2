@@ -2,6 +2,7 @@ package model.categoria;
 
 import java.util.List;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Transaction;
 import org.hibernate.classic.Session;
 
@@ -150,5 +151,42 @@ public class CategoriasDAO implements InterfaceCategorias {
         }
                 
         return null;                        
-    }    
+    } 
+    
+    
+    //query buscar categoria por nome
+    public Categorias getCategoriaByName(String name)
+    {
+        Session session = null;
+        Transaction transaction = null;
+        
+        try
+        {                   
+            session = hibernate.util.HibernateUtil.getSessionFactory().openSession();        
+            transaction = session.beginTransaction();
+            transaction.begin();                    
+            Query query =  session.createQuery("from Categorias where descricao = :code");
+            query.setParameter("code", name);
+            Categorias cat = (Categorias) query.uniqueResult();                                            
+            transaction.commit();
+                        
+            return cat; 
+        }
+        catch(HibernateException ex)
+        {
+            if(transaction != null)
+                transaction.rollback();
+            
+            ex.printStackTrace();
+        } 
+        finally
+        {
+            session.close();     
+        }
+                
+        return null;   
+    }
+    
+    
+    
 }

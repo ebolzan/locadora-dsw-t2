@@ -34,8 +34,9 @@ public class teste {
         */
         
         Categorias cat = new Categorias();
-        cat.setDescricao("terror");
-        catDAO.salvar(cat);
+        cat = catDAO.getCategoriaByName("Drama");
+        
+        System.out.print(cat);
                 
         
     }
