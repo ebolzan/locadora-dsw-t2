@@ -49,6 +49,11 @@
                         <h:inputText size="20" value="#{filmesBean.descricao}" />    		                                                    		
             </h:panelGrid>
             
+            
+            <h:selectOneMenu value="#{filmesBean.categorias}">
+                <f:selectItems value="#{filmesBean.categoriasDao}"/>
+            </h:selectOneMenu>
+            
             <h:commandButton value="Add" action="#{filmesBean.addAction}" />
  
     	</h:form>       

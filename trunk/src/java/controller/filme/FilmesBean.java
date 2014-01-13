@@ -25,12 +25,23 @@ import model.filme.FilmesDAO;
 @SessionScoped
 public class FilmesBean implements Serializable{
     
+    //categoria dao para listar todas as categorias
+    private CategoriasDAO categoriasDao = new CategoriasDAO();
+    
+    
+    
     private FilmesDAO filmes;    
         
     private String descricao;
     private Date ano;
     private Categorias categorias;
     private Boolean editavel;        
+    
+    public List<Categorias> getCategoriasDao()
+    {
+        return categoriasDao.lista();
+    }
+    
 
     public FilmesBean() {        
         this.filmes = new FilmesDAO();                
