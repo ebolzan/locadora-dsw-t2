@@ -5,6 +5,7 @@
 package controller.categoria;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
@@ -46,7 +47,7 @@ public class CategoriasBean implements Serializable{
         this.descricao = descricao;
     }
     
-    public List<Categorias> getCategorias()
+    public ArrayList<Categorias> getCategorias()
     {
         return categoriaDao.lista();
     }
