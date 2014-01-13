@@ -49,8 +49,9 @@
                         <h:inputText size="20" value="#{filmesBean.descricao}" />    		                                                    		
             
                         Categoria:
-                        <h:selectOneMenu value="#{filmesBean.categorias}">
-                            <f:selectItems value="#{filmesBean.categoriasDao}"/>
+                        <h:selectOneMenu value="#{filmesBean.categorias}" >
+                            
+                            <f:selectItems  value="#{filmesBean.categoriasValue}"/>
                         </h:selectOneMenu>
 
                         <h:commandButton value="Add" action="#{filmesBean.addAction}" />
