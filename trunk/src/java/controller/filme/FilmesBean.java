@@ -8,7 +8,9 @@ package controller.filme;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import model.categoria.Categorias;
@@ -27,9 +29,7 @@ public class FilmesBean implements Serializable{
     
     //categoria dao para listar todas as categorias
     private CategoriasDAO categoriasDao = new CategoriasDAO();
-    
-    
-    
+        
     private FilmesDAO filmes;    
         
     private String descricao;
@@ -37,14 +37,38 @@ public class FilmesBean implements Serializable{
     private Categorias categorias;
     private Boolean editavel;        
     
+    //static var para inserir objetos
+    private static Map<String,Categorias> categoriasValue;
+    static{
+      categoriasValue = new LinkedHashMap<String,Categorias>();    
+    }
+
+    public Map<String,Categorias> getCategoriasValue() {
+    return categoriasValue;
+    }
+    
     public List<Categorias> getCategoriasDao()
     {
+        for(Categorias cat : categoriasDao.lista())
+        {
+            //label, value
+        categoriasValue.put(cat.getDescricao(), cat);         
+        }
         return categoriasDao.lista();
     }
     
 
     public FilmesBean() {        
         this.filmes = new FilmesDAO();                
+        
+        //cria hash de categorias
+            for(Categorias cat : categoriasDao.lista())
+            {
+                //label, value
+                categoriasValue.put(cat.getDescricao(), cat);                         
+            }
+        
+        
     }
         
     public FilmesDAO getFilmes() {
