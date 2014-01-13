@@ -109,7 +109,7 @@ public class Filmes implements Serializable {
 
     @Override
     public String toString() {
-        return "Filmes{" + "id=" + id + ", descricao=" + descricao + ", ano=" + ano + ", categorias=" + categorias + '}';
+        return descricao;
     }            
     
             
