@@ -4,6 +4,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
       >
     <h:head>
     	
@@ -11,7 +12,7 @@
     <h:body> 
         <ui:include src="header.xhtml" />
         
-        <h2>Filmes</h2>
+        <h2>Filmes</h2>               
         
         <h:form>
             <h:dataTable value="#{filmesBean.filmesList}" var="filmes"
@@ -48,6 +49,10 @@
     			Filme:
                         <h:inputText size="20" value="#{filmesBean.descricao}" />    		                                                    		
             
+                        Data:                                                 
+                        <p:calendar value="#{filmesBean.ano}" id="popupCal"/>
+
+                        
                         Categoria:
                         <h:selectOneMenu value="#{filmesBean.categoriaInput}" >
                             
