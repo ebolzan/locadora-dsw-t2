@@ -56,7 +56,7 @@ public class Filmes implements Serializable {
     private Categorias categorias;
     
     @Transient
-    private Boolean editavel = true;
+    private Boolean editavel = false;
 
     public Filmes(){}
     
