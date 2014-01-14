@@ -34,11 +34,11 @@
  
     		<h:column>
     			<f:facet name="header">Ação</f:facet> 
-                        <h:commandLink value="Editar" action="#{filmesBean.updateAction(cat)}" 
+                        <h:commandLink value="Editar" action="#{filmesBean.updateAction(filmes)}" 
                                        rendered="#{not filmes.editavel}" />
                         &nbsp;&nbsp;
                         <h:commandLink value="Deletar" 
-                                       action="#{filmesBean.deleteAction(cat)}" /> 
+                                       action="#{filmesBean.deleteAction(filmes)}" /> 
     		</h:column>
             </h:dataTable>
             
