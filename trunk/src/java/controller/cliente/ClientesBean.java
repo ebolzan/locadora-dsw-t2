@@ -27,6 +27,7 @@ public class ClientesBean implements Serializable{
     private String telefone;
     private String celular;
     private String email;
+    private Boolean editavel;   
 
     public ClientesBean() {
         this.clienteDao = new ClientesDAO();
@@ -81,6 +82,14 @@ public class ClientesBean implements Serializable{
     {
         this.clienteDao.excluir(clientes);
         return null;
+    }
+    
+    public Boolean getEditavel() {
+        return editavel;
+    }
+
+    public void setEditavel(Boolean editavel) {
+        this.editavel = editavel;
     }
     
     public String addAction()

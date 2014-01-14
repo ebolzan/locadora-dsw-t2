@@ -21,6 +21,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import model.endereco.Enderecos;
@@ -62,6 +63,9 @@ public class Clientes implements Serializable {
     private Enderecos enderecos;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "clientesId")
     private Collection<Locacoes> locacoesCollection;
+    
+    @Transient
+    private Boolean editavel = true;
 
     public Clientes() {
     }
@@ -123,6 +127,14 @@ public class Clientes implements Serializable {
 
     public void setEnderecos(Enderecos enderecos) {
         this.enderecos = enderecos;
+    }
+    
+    public Boolean getEditavel() {
+        return editavel;
+    }
+
+    public void setEditavel(Boolean editavel) {
+        this.editavel = editavel;
     }
 
     @XmlTransient

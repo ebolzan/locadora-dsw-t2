@@ -1,16 +1,72 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+    <h:head>
+    	<h:outputStylesheet library="css" name="table-style.css"  />
+    </h:head>
+    <h:body>              
+        
+        <ui:include src="header.xhtml" />
+        <div class="content">
+    	<h2>Cadastro de clientes</h2>
+    	<h:form>
+            <h:dataTable value="#{clientesBean.clientesList}" var="cliente"
+    			styleClass="order-table"
+    			headerClass="order-table-header"
+    			rowClasses="order-table-odd-row,order-table-even-row">
+                              
+    		<h:column>
+    			<f:facet name="header">ID</f:facet>
+                        <h:inputText value="#{cliente.id}" size="10" rendered="#{cliente.editavel}" />
+                        <h:outputText value="#{cliente.id}" rendered="#{not cliente.editavel}" />
+    		</h:column>
+ 
+    		<h:column>
+    			<f:facet name="header">Nome</f:facet>
+                        <h:inputText value="#{cliente.nome}" size="10" rendered="#{cliente.editavel}" />
+                        <h:outputText value="#{cliente.nome}" rendered="#{not cliente.editavel}" /> 
+    		</h:column>     		     		
+ 
+    		<h:column>
+    			<f:facet name="header">Ação</f:facet> 
+                        <h:commandLink value="Editar" action="#{clientesBean.updateAction(cliente)}" 
+                                       rendered="#{not cliente.editavel}" />
+                        
+                        &nbsp;&nbsp;
+                        <h:commandLink value="Deletar" 
+                                       action="#{clientesBean.deleteAction(cliente)}" /> 
+    		</h:column>
+            </h:dataTable>
+            
+            
+ 
+            <h3>Novo Cliente</h3>
+            <h:panelGrid columns="2">
+                        			
+    			Nome
+                        <h:inputText size="20" value="#{clientesBean.nome}" />   
+                        
+                        Telefone fixo
+                        <h:inputText size="20" value="#{clientesBean.telefone}" />    		                                                    		
+            
+                        Telefone celular                                         
+                        <h:inputText value="#{clientesBean.celular}" />
+
+                        Email
+                        <h:inputText size="20" value="#{clientesBean.email}" />    		                                                    		
+                        
+            </h:panelGrid>
+            
+            <h:commandButton value="Add" action="#{clientesBean.addAction}" />
+ 
+    	</h:form>        
+        
+        <h:link value="Voltar para a página inicial" outcome="index" />
+        </div>
+        <ui:include src="footer.xhtml" />
+    </h:body>            
 </html>
