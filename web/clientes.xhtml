@@ -30,6 +30,18 @@
                         <h:inputText value="#{cliente.nome}" size="10" rendered="#{cliente.editavel}" />
                         <h:outputText value="#{cliente.nome}" rendered="#{not cliente.editavel}" /> 
     		</h:column>     		     		
+                
+                <h:column>
+    			<f:facet name="header">Telefone</f:facet>
+                        <h:inputText value="#{cliente.telefone}" size="10" rendered="#{cliente.editavel}" />
+                        <h:outputText value="#{cliente.telefone}" rendered="#{not cliente.editavel}" /> 
+    		</h:column>     
+                
+                <h:column>
+    			<f:facet name="header">Celular</f:facet>
+                        <h:inputText value="#{cliente.celular}" size="10" rendered="#{cliente.editavel}" />
+                        <h:outputText value="#{cliente.celular}" rendered="#{not cliente.editavel}" /> 
+    		</h:column>     
  
     		<h:column>
     			<f:facet name="header">Ação</f:facet> 
