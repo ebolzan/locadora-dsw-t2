@@ -121,6 +121,7 @@ public class FilmesBean implements Serializable{
     
     public String addAction()
     {
+        //Date lancamento = new Date(ano);
         Categorias c1 = this.categoriasDao.getCategoriaByName(this.getCategoriaInput());
         Filmes filme = new Filmes(Integer.SIZE, descricao, ano, c1);
         filmes.salvar(filme);        
